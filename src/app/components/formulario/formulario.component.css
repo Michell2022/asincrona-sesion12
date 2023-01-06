@@ -1,0 +1,41 @@
+.entradas{
+    width: 100%;
+    height: 60px;
+    max-width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.entradas input{
+    width: 100%;
+    height: 100%;
+    background: none;
+    color: #3b82f6;
+    padding-top: 20px;
+    border: none;
+    outline: 0px;
+}
+
+.entradas .lbl_nombre{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    border-bottom: 1px solid #c7c7c7;
+}
+
+.text_nombre{
+    position: absolute;
+    bottom: 5px;
+    left: 0;
+    transition:  all 0.3s ease;
+}
+
+.entradas input:focus + .lbl_nombre .text_nombre,
+.entradas input:valid + .lbl_nombre .text_nombre{
+    transform:  translateY(-150%);
+    font-size: 13px;
+}
+
