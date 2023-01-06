@@ -10,6 +10,9 @@ import { FormularioComponent } from './formulario/formulario.component';
   ],
   imports: [
     CommonModule
+  ],
+  exports: [
+    FormularioComponent
   ]
 })
 export class ComponentsModule { }
