@@ -3,13 +3,13 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CondicionalSiDirective } from './directivas/condicional-si.directive';
 import { PagesModule } from './pages/pages.module';
+import { MostrarSiDirective } from './directives/mostrar-si.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CondicionalSiDirective
+    MostrarSiDirective
   ],
   imports: [
     BrowserModule,
