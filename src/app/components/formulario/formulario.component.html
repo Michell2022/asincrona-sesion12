@@ -1,66 +1,103 @@
-<div class="w-11/12 mx-auto bg-blue-100 py-4">
+<div class="w-11/12 mx-auto bg-blue-100 py-4 w-full fondoPantalla">
     <div class="mx-auto bg-white border border-blue-400 rounded p-4 px-12 w-11/12 sm:w-3/4 md:w-3/5 xl:w-3/5">
-        <form action="">
-            <div class="py-3 text-center text-2xl text-sky-500">
+
+        <form [formGroup]="formLogin" (submit)="send()">
+            <div class="py-3 text-center text-3xl text-sky-500">
                 <p>Formulario de Contacto</p>
             </div>
-            <div class="message__bienvenida" *ngIf="bienvenido">
-                <span>Gracias por comunicarte con nosotros</span>
-            </div>
-
             <div class="formulario">
-                <div class="form__group my-8">
-                    <input type="text" id="name" class="form__input" placeholder=" ">
-                    <label for="name" class="form__label">Nombre*</label>
-                    <span class="form__line"></span>
+                <div class="my-8">
+                    <label for="name" class="form-label">Nombre*</label>
+                    <input type="text" id="name" class="form-control" formControlName="name" required minlength="1"
+                        maxlength="250" class="form-control"
+                        [class.is-invalid]="name.invalid && (name.dirty || name.touched)">
+                    <div *ngIf="name.invalid && (name.dirty || name.touched)" class="invalid-feedback">
+                        <div *ngIf="name.errors?.['required']">
+                            Este campo es obligatorio.
+                        </div>
+                        <div *ngIf="name.errors?.['minlength']">
+                            Este campo debe tener al menos 1 carácter.
+                        </div>
+                        <div *ngIf="name.errors?.['maxlength']">
+                            Este campo debe tener como máximo 5 caracteres.
+                        </div>
+                    </div>
                 </div>
-                <div class="form__group my-8">
-                    <input type="text" id="correo" class="form__input" placeholder=" ">
-                    <label for="correo" class="form__label">Email*</label>
-                    <span class="form__line"></span>
+                <div class="my-8">
+                    <label for="correo" class="form-label">Email*</label>
+                    <input type="email" id="correo" formControlName="email" required minlength="1" maxlength="250"
+                        class="form-control" [class.is-invalid]="email.invalid && (email.dirty || email.touched)">
+                    <div *ngIf="email.invalid && (email.dirty || email.touched)" class="invalid-feedback">
+                        <div *ngIf="email.errors?.['required']">
+                            Este campo es obligatorio.
+                        </div>
+                        <div *ngIf="email.errors?.['minlength']">
+                            Este campo debe tener al menos 1 carácter.
+                        </div>
+                        <div *ngIf="email.errors?.['maxlength']">
+                            Este campo debe tener como máximo 250 caracteres.
+                        </div>
+                        <div
+                            *ngIf="!email.errors?.['required'] && !email.errors?.['minlength'] && !email.errors?.['maxlength'] && email.errors?.['emailValidator']">
+                            Formato de correo inválido.
+                        </div>
+                    </div>
                 </div>
-                <div class="form__group my-8">
-                    <input type="text" id="phone" class="form__input" placeholder=" ">
-                    <label for="phone" class="form__label">Teléfono*</label>
-                    <span class="form__line"></span>
+                <div class="my-8">
+                    <label for="phone" class="form-label">Teléfono*</label>
+                    <input type="tel" id="phone" class="form-control" formControlName="phone" required minlength="1"
+                    maxlength="9" class="form-control"
+                    [class.is-invalid]="phone.invalid && (phone.dirty || phone.touched)">
+                    <div *ngIf="phone.invalid && (phone.dirty || phone.touched)" class="invalid-feedback">
+                        <div *ngIf="phone.errors?.['required']">
+                            Este campo es obligatorio.
+                        </div>
+                        <div *ngIf="phone.errors?.['minlength']">
+                            Este campo debe tener al menos 1 carácter.
+                        </div>
+                        <div *ngIf="phone.errors?.['maxlength']">
+                            Este campo debe tener como máximo 9 caracteres.
+                        </div>
+                    </div>
                 </div>
-                <div class="form__group my-8">
-                    <input type="text" id="asunto" class="form__input" placeholder=" ">
-                    <label for="asunto" class="form__label">Asunto*</label>
-                    <span class="form__line"></span>
+                <div class="my-8">
+                    <label for="asunto" class="form-label">Asunto*</label>
+                    <input type="text" id="asunto" class="form-control" formControlName="asunto" required minlength="1"
+                        maxlength="250" class="form-control"
+                        [class.is-invalid]="asunto.invalid && (asunto.dirty || asunto.touched)">
+                        <div *ngIf="asunto.invalid && (asunto.dirty || asunto.touched)" class="invalid-feedback">
+                            <div *ngIf="asunto.errors?.['required']">
+                                Este campo es obligatorio.
+                            </div>
+                            <div *ngIf="asunto.errors?.['minlength']">
+                                Este campo debe tener al menos 1 carácter.
+                            </div>
+                            <div *ngIf="asunto.errors?.['maxlength']">
+                                Este campo debe tener como máximo 250 caracteres.
+                            </div>
+                        </div>
                 </div>
-                <div class="form__group my-8">
-                    <input type="text" id="message" class="form__input" placeholder=" ">
-                    <label for="message" class="form__label">Mensaje*</label>
-                    <span class="form__line"></span>
+                <div class="my-8">
+                    <label for="message" class="form-label">Mensaje*</label>
+                    <input type="text" id="message" class="form-control" formControlName="message" required minlength="1"
+                    maxlength="250" class="form-control"
+                    [class.is-invalid]="message.invalid && (message.dirty || message.touched)">
+                    <div *ngIf="asunto.invalid && (asunto.dirty || asunto.touched)" class="invalid-feedback">
+                        <div *ngIf="message.errors?.['required']">
+                            Este campo es obligatorio.
+                        </div>
+                        <div *ngIf="message.errors?.['minlength']">
+                            Este campo debe tener al menos 1 carácter.
+                        </div>
+                        <div *ngIf="message.errors?.['maxlength']">
+                            Este campo debe tener como máximo 250 caracteres.
+                        </div>
+                    </div>
                 </div>
                 <div class="boton">
-                    <button class="form__submit" (click)="bienvenido = !bienvenido">Enviar</button>
+                    <button class="bg-blue-500 py-1 px-8 rounded text-white" (click)="validate()">Enviar</button>
                 </div>
             </div>
         </form>
     </div>
 </div>
-<!-- <div class="entradas my-3">
-                <input type="text" name="" id="" placeholder=" ">
-                <label class="lbl_nombre"><span class="text_nombre">Nombre*</span></label>
-            </div>
-            <div class="entradas my-3">
-                <input type="text" name="" id="" placeholder=" ">
-                <label class="lbl_nombre"><span class="text_nombre">Email*</span></label>
-            </div>
-            <div class="entradas my-3">
-                <input type="text" name="" id="" placeholder=" " >
-                <label class="lbl_nombre"><span class="text_nombre">Teléfono*</span></label>
-            </div>
-            <div class="entradas my-3">
-                <input type="text" name="" id="" placeholder=" ">
-                <label class="lbl_nombre"><span class="text_nombre">Asunto*</span></label>
-            </div>
-            <div class="entradas my-3">
-                <input type="text" name="" id="" placeholder=" ">
-                <label class="lbl_nombre"><span class="text_nombre">Mensaje</span></label>
-            </div>
-            <div class="text-center py-4">
-                <button class=" py-1 px-6 rounded bg-blue-500 text-white" (click)="mensaje = !mensaje">Enviar</button>
-            </div> -->
